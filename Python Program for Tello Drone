@@ -1,0 +1,71 @@
+from djitellopy import Tello
+import time
+
+# Initialize the drone
+drone = Tello()
+
+# Connect to the drone
+print("Connecting to Tello...")
+drone.connect()
+
+# Check battery level
+print(f"Battery: {drone.get_battery()}%")
+
+# Start the drone program
+try:
+    # Enter command mode
+    drone.send_rc_control(0, 0, 0, 0)  # Reset control
+    drone.streamon()  # Start video stream (optional)
+    
+    # Take off
+    print("Taking off...")
+    drone.takeoff()
+    time.sleep(2)  # Wait for stable takeoff
+
+    # Fly in a square pattern (move forward, right, backward, left)
+    side_length = 100  # Distance in cm
+    speed = 50  # Speed in cm/s
+
+    print("Flying in a square pattern...")
+    # Move forward
+    drone.move_forward(side_length)
+    time.sleep(3)
+    
+    # Rotate 90 degrees clockwise
+    drone.rotate_clockwise(90)
+    time.sleep(2)
+    
+    # Move right
+    drone.move_right(side_length)
+    time.sleep(3)
+    
+    # Rotate 90 degrees clockwise
+    drone.rotate_clockwise(90)
+    time.sleep(2)
+    
+    # Move backward
+    drone.move_back(side_length)
+    time.sleep(3)
+    
+    # Rotate 90 degrees clockwise
+    drone.rotate_clockwise(90)
+    time.sleep(2)
+    
+    # Move left
+    drone.move_left(side_length)
+    time.sleep(3)
+    
+    # Land the drone
+    print("Landing...")
+    drone.land()
+    drone.streamoff()  # Stop video stream
+
+except Exception as e:
+    print(f"An error occurred: {e}")
+    drone.emergency()  # Emergency stop in case of error
+
+finally:
+    # Ensure the drone stops all motors
+    drone.send_rc_control(0, 0, 0, 0)
+    print("Program ended.")
+pip install djitellopy
