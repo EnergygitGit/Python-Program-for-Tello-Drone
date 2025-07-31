@@ -1,0 +1,12 @@
+ # Move left
+    drone.move_left(side_length)
+    time.sleep(3)
+    
+    # Land the drone
+    print("Landing...")
+    drone.land()
+    drone.streamoff()  # Stop video stream
+
+except Exception as e:
+    print(f"An error occurred: {e}")
+    drone.emergency()  # Emergency stop in case of error
