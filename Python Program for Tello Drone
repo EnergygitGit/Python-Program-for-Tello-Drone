@@ -42,8 +42,4 @@ print(f"Battery: {drone.get_battery()}%")
     
    
 
-finally:
-    # Ensure the drone stops all motors
-    drone.send_rc_control(0, 0, 0, 0)
-    print("Program ended.")
-pip install djitellopy
+
