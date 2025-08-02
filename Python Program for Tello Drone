@@ -36,9 +36,7 @@ print(f"Battery: {drone.get_battery()}%")
     drone.move_back(side_length)
     time.sleep(3)
     
-    # Rotate 90 degrees clockwise
-    drone.rotate_clockwise(90)
-    time.sleep(2)
+
     
    
 
