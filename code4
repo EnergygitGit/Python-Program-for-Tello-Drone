@@ -1,0 +1,3 @@
+    # Rotate 90 degrees clockwise
+    drone.rotate_clockwise(90)
+    time.sleep(2)
